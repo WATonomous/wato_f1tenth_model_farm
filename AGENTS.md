@@ -7,7 +7,7 @@ automatically, read it before doing anything else. Details live in `agents/`.
 ## What this repo is
 
 The WATonomous F1TENTH model farm: data and models for the car's perception. It is a Python 3.12
-package (`farm`, in `src/farm/`, next to the data in `src/data/`) in the `model_farm` conda
+package (`farm`: the `src/` folder, with the data in `data/`) in the `model_farm` conda
 environment. The car stack's `./watod tools` clones it into that repo's `tools/` folder, but it
 is a separate repo with its own history. No Docker, no `watod`.
 
@@ -21,7 +21,7 @@ Reasons are in `agents/rules.md`.
 1. **The Data Standard is the contract.** Read `docs/data-standard.md` before writing code that
    touches data, and write data only through `farm.standard`. Changing the standard needs lead
    approval and a version bump; if the code and the standard disagree, say so, do not pick one.
-2. **Never commit data, bags, models or checkpoints.** `src/data/` (`DATA_DIR`) is git-ignored.
+2. **Never commit data, bags, models or checkpoints.** `data/` (`DATA_DIR`) is git-ignored.
 3. **Never move, rename or edit dataset files by hand**, and never renumber sample IDs. A
    generator only overwrites annotations whose status is `generated` (section 10.3).
 4. **Never overwrite outputs.** Write to a temporary file and rename (`farm.standard.jsonio`),

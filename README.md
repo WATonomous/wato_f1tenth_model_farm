@@ -26,19 +26,18 @@ python -B -m unittest discover -s tests -t .   # CPU tests
 | --- | --- |
 | `docs/data-standard.md` | The Data Standard (version 1.0): every format, ID and rule. Changes need lead approval and a version bump |
 | `docs/examples/` | Small examples of each format |
-| `src/farm/standard/` | The Data Standard as a library: IDs, paths, images, labels, provenance, predictions, and the validator |
-| `src/farm/cli.py` | The `farm` command (`farm validate`) |
+| `src/` | The `farm` package: `standard/` (the Data Standard as a library and validator), `cli.py` (the `farm` command), `extractor/` and `autolabel/` (not built yet) |
 | `tests/` | CPU tests (`python -B -m unittest discover -s tests -t .`) |
-| `src/data/` | `DATA_DIR`: recordings, datasets, predictions. Git-ignored |
+| `data/` | `DATA_DIR`: recordings, datasets, predictions. Git-ignored |
 | `AGENTS.md`, `agents/` | Instructions for AI coding agents (and a good map for people too) |
 
 ## Data
 
-All data lives under `DATA_DIR`: `src/data/` by default, or the `DATA_DIR` environment variable to
+All data lives under `DATA_DIR`: `data/` by default, or the `DATA_DIR` environment variable to
 put it on another disk.
 
 ```text
-src/data/
+data/
 ├── recordings/<session_id>/      rosbag2 MCAP, unchanged
 ├── datasets/<session_id>/        rgb/ depth/ meta/ labels/ masks/ + session.json, tracks.json
 └── predictions/<run_id>/         run.json + <session_id>/detections.jsonl, masks/, probs/
@@ -48,7 +47,7 @@ Never commit data, bags, models or checkpoints. Never move, rename or edit datas
 use the library, and check a session before using it:
 
 ```bash
-farm validate src/data/datasets/<session_id>     # one session
+farm validate data/datasets/<session_id>     # one session
 farm validate                                     # everything under DATA_DIR
 ```
 

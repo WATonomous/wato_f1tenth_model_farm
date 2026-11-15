@@ -21,8 +21,8 @@ Keep `labels/<sample_id>.txt` and `tracks.json` in sync: `tracks.json` refers to
 ## Validating
 
 ```bash
-farm validate src/data/datasets/<session_id>     # one session
-farm validate src/data                            # every session and prediction run
+farm validate data/datasets/<session_id>     # one session
+farm validate data                            # every session and prediction run
 farm validate --json --quiet <path>               # machine-readable, errors only
 ```
 
@@ -33,7 +33,7 @@ fails only on the images its README lists as still to add.
 ## Changing the standard
 
 1. Write the change and the reason; get lead approval.
-2. Bump `Version` in `docs/data-standard.md` and `SCHEMA_VERSION` in `src/farm/standard/schema.py`.
+2. Bump `Version` in `docs/data-standard.md` and `SCHEMA_VERSION` in `src/standard/schema.py`.
 3. Update the library, `docs/examples/` and the tests in the same change.
 
 Open questions found while building the library (for the lead):

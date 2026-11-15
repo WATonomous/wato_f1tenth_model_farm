@@ -1,6 +1,6 @@
 """Where data lives (Data Standard, section 3).
 
-All data is under DATA_DIR: the environment variable if set, else `src/data/` in this repository.
+All data is under DATA_DIR: the environment variable if set, else `data/` in this repository.
 
     >>> from farm.standard.layout import SessionDir, data_dir
     >>> s = SessionDir(data_dir() / "datasets" / "20261006_e7-hallway_r03")
@@ -17,7 +17,7 @@ from pathlib import Path
 from . import ids
 from .jsonio import read_json
 
-REPO_ROOT = Path(__file__).resolve().parents[3]  # src/farm/standard/layout.py -> repository root
+REPO_ROOT = Path(__file__).resolve().parents[2]  # src/standard/layout.py -> repository root
 
 # Per-sample folders and the extension of the file each holds.
 SAMPLE_DIRS: dict[str, str] = {
@@ -31,12 +31,12 @@ SESSION_FILES = ("session.json", "tracks.json")
 
 
 def data_dir(path: str | os.PathLike | None = None) -> Path:
-    """DATA_DIR: `path` if given, else the DATA_DIR environment variable, else src/data/."""
+    """DATA_DIR: `path` if given, else the DATA_DIR environment variable, else data/."""
     if path is not None:
         return Path(path)
     if os.environ.get("DATA_DIR"):
         return Path(os.environ["DATA_DIR"])
-    return REPO_ROOT / "src" / "data"
+    return REPO_ROOT / "data"
 
 
 def datasets_dir(data: str | os.PathLike | None = None) -> Path:

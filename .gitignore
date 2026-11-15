@@ -1,6 +1,6 @@
 # Data, recordings, datasets, predictions and caches (DATA_DIR): never committed
-src/data/*
-!src/data/.gitkeep
+data/*
+!data/.gitkeep
 *.db3
 *.mcap
 

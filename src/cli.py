@@ -1,8 +1,8 @@
 """The `farm` command.
 
-    farm validate src/data/datasets/20261006_e7-hallway_r03      one session
-    farm validate src/data                                       every session and prediction run
-    farm validate --json --quiet src/data/predictions/<run_id>   machine-readable, errors only
+    farm validate data/datasets/20261006_e7-hallway_r03      one session
+    farm validate data                                       every session and prediction run
+    farm validate --json --quiet data/predictions/<run_id>   machine-readable, errors only
 
 Exit status: 0 when nothing has errors, 1 when something does, 2 for a usage error.
 """

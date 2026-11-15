@@ -94,11 +94,11 @@ track is `(session_id, track_id)`. Track IDs are defined in Section 8.4.
 
 ## 3. Directory layout
 
-All data lives under `src/data/` (`DATA_DIR`). Each session gets its own
+All data lives under `data/` (`DATA_DIR`). Each session gets its own
 directory, and every per-sample file is named `<sample_id>.<ext>`.
 
 ```
-src/data/
+data/
 ├── recordings/
 │   └── <session_id>/                 # rosbag2 MCAP, kept unchanged
 ├── datasets/
@@ -526,7 +526,7 @@ to `excluded`.
 
 ## 11. Predictions
 
-Model outputs are written under `src/data/predictions/<run_id>/`. A `run_id` is
+Model outputs are written under `data/predictions/<run_id>/`. A `run_id` is
 unique, lowercase, and uses hyphens within fields and underscores between them,
 e.g. `20261012_yolo11n-car_v1`. Predictions are never written into
 `datasets/`.

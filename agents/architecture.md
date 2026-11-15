@@ -5,19 +5,21 @@
 ```text
 docs/data-standard.md     the Data Standard, version 1.0 (the contract)
 docs/examples/            small examples of every format (images still to be added; see its README)
-src/                      everything that lives here: the code and the data
-  farm/                   the Python package (installed editable by setup_env.sh)
-    cli.py                the `farm` command
-    standard/             the Data Standard as a library (below)
-  data/                   DATA_DIR (git-ignored): recordings/, datasets/, predictions/
+src/                      the `farm` package (installed editable by setup_env.sh)
+  cli.py                  the `farm` command
+  standard/               farm.standard: the Data Standard as a library (below)
+  extractor/              farm.extractor: bag extraction (owned by a member, not built yet)
+  autolabel/              farm.autolabel: SAM3 pre-labels for CVAT (planned)
+data/                     DATA_DIR (git-ignored): recordings/, datasets/, predictions/
 tests/                    CPU tests; helpers.py builds small valid sessions
 environment.yml           conda env: Python 3.12 + pip only
 pyproject.toml            the package and its dependencies (base: numpy, Pillow)
 setup_env.sh              create or update the env, install the package
 ```
 
-The package uses the standard `src/` layout, next to `src/data/` (the path the Data Standard
-names). `DATA_DIR` (environment variable) moves the data to another disk.
+`src/` is the `farm` package itself (`package-dir` in `pyproject.toml`), so `src/standard/`
+imports as `farm.standard`; add each new folder under `src/` to `packages` there. Code never
+goes in `data/`. `DATA_DIR` (environment variable) moves the data to another disk.
 
 ## `farm.standard`
 
@@ -49,5 +51,5 @@ a final newline, unknown fields).
 
 The car stack (`wato_f1tenth`) records bags with `./watod bag record` (its
 `agents/workflows/deploy-to-car.md` and `ml-data.md`). Bags are copied unchanged to
-`src/data/recordings/<session_id>/`. Models go back to the car through a perception node in that
+`data/recordings/<session_id>/`. Models go back to the car through a perception node in that
 repo; this package's Python 3.12 lets it share inference code.

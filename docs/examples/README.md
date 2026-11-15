@@ -1,7 +1,7 @@
 # Examples
 
 Small paired examples of the formats in [`../data-standard.md`](../data-standard.md).
-The directory structure matches `src/data/datasets/` and `src/data/predictions/`.
+The directory structure matches `data/datasets/` and `data/predictions/`.
 
 | Path | Shows |
 | --- | --- |

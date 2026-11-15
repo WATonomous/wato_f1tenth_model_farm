@@ -1,10 +1,10 @@
 """Validate dataset sessions and prediction runs against the Data Standard (section 12).
 
     >>> from farm.standard.validate import validate_session
-    >>> report = validate_session("src/data/datasets/20261006_e7-hallway_r03")
+    >>> report = validate_session("data/datasets/20261006_e7-hallway_r03")
     >>> report.ok, len(report.errors), len(report.warnings)
 
-From the command line: `farm validate PATH...` (see src/farm/cli.py).
+From the command line: `farm validate PATH...` (see src/cli.py).
 
 Errors are section 12 rules (and the formats sections 4-11 define); a session with errors must not
 be used for training or evaluation. Warnings are format slips the standard asks for in prose but

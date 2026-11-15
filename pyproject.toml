@@ -20,6 +20,8 @@ dependencies = [
 [project.scripts]
 farm = "farm.cli:main"
 
-[tool.setuptools.packages.find]
-where = ["src"]
-include = ["farm*"]
+[tool.setuptools]
+# src/ is the `farm` package: src/standard/ imports as farm.standard, src/extractor/ as farm.extractor.
+# Add each new folder under src/ to this list.
+package-dir = { "farm" = "src" }
+packages = ["farm", "farm.standard", "farm.extractor", "farm.autolabel"]
