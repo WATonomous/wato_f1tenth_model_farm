@@ -1,15 +1,24 @@
-modules/.env
-watod-config.local.sh
-.vscode/
-__pycache__/
-*.py[cod]
-.pytest_cache/
-.conda/
+# Data, recordings, datasets, predictions and caches (DATA_DIR): never committed
 src/data/*
 !src/data/.gitkeep
 *.db3
 *.mcap
+
+# Models and checkpoints
 *.pt
 *.pth
 *.onnx
 *.engine
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.venv/
+.conda/
+
+# Editors
+.vscode/

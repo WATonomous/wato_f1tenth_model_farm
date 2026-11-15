@@ -1,4 +1,10 @@
-name: training
+# Conda environment for the model farm. Create or update it with ./setup_env.sh, which also
+# installs this repository (pyproject.toml) into it.
+#
+# Python 3.12 on purpose: ROS 2 Jazzy (Ubuntu 24.04) uses Python 3.12, so code written here can
+# be installed into the car stack's Python unchanged. Python packages live in pyproject.toml,
+# not here; this file only pins the interpreter.
+name: model_farm
 channels:
   - conda-forge
   - nodefaults

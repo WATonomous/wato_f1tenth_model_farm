@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wato-f1tenth-model-farm"
+version = "0.1.0"
+description = "WATonomous F1TENTH model farm: the Data Standard library, auto-labelling and model training"
+readme = "README.md"
+license = "Apache-2.0"
+# Python 3.12 only: the same Python as ROS 2 Jazzy, so the car stack can install this package.
+requires-python = ">=3.12,<3.13"
+# The base install stays small: only what the Data Standard library needs. Each later part
+# (auto-labelling, WATcloud jobs) adds its own optional group when it is built.
+dependencies = [
+    "numpy>=1.26,<3",
+    "pillow>=10,<13",
+]
+
+[project.scripts]
+farm = "farm.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["farm*"]
