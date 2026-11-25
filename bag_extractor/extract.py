@@ -13,6 +13,8 @@ from rosbags.rosbag2 import Reader
 from rosbags.typesys import Stores, get_typestore
 import zstandard
 
+from pair_frames import pair_frames
+
 
 def decode_depth(data):
     """Read the zstd_image_transport header, including row stride and endianness."""
@@ -49,7 +51,11 @@ def main():
     parser.add_argument("--rgb-topic", default="/camera/camera/color/image_raw/compressed")
     parser.add_argument("--depth-topic", default="/camera/camera/depth/image_rect_raw/zstd")
     parser.add_argument("--limit", type=int, help="Maximum frames per stream")
+    parser.add_argument("--max-dt-ns", type=int, default=10_000_000,
+                        help="Maximum RGB/depth capture time difference (default 10 ms)")
     args = parser.parse_args()
+    if args.max_dt_ns < 0:
+        parser.error("--max-dt-ns must be nonnegative")
     if args.limit is not None and args.limit < 1:
         parser.error("--limit must be positive")
     counts = {"rgb": 0, "depth": 0}
@@ -87,6 +93,8 @@ def main():
                 writer.writerow([kind, relative_path.as_posix(), capture_time, bag_time, message.header.frame_id, message.format])
                 counts[kind] += 1
         print(f"Exported {counts['rgb']} RGB and {counts['depth']} depth frames to {args.output}")
+
+    pair_frames(args.output, args.max_dt_ns)
 
 
 if __name__ == "__main__":
